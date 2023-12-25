@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -43,8 +44,8 @@ public class Intent1Test {
                                 childAtPosition(
                                         withId(R.id.toolbar),
                                         2),
-                                0),
-                        isDisplayed()));
+                                0)));
+        overflowMenuButton.check(ViewAssertions.matches(isDisplayed()));
         overflowMenuButton.perform(click());
 
         ViewInteraction materialTextView = onView(
@@ -53,8 +54,8 @@ public class Intent1Test {
                                 childAtPosition(
                                         withId(androidx.constraintlayout.widget.R.id.content),
                                         0),
-                                0),
-                        isDisplayed()));
+                                0)));
+        materialTextView.check(ViewAssertions.matches(isDisplayed()));
         materialTextView.perform(click());
 
         intended(hasData("https://google.com"));
